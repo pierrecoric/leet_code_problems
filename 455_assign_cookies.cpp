@@ -5,12 +5,6 @@ public:
         //Sort both arrays.
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
-
-        //Check edge cases:
-        //No cookie or no children.
-        if (g.size() == 0 || s.size() == 0) {
-            return 0;
-        }
         
         //Initialize currentChild and currentCookie to traverse the two vectors.
         //CurrentChid is also the amount of content children.
@@ -18,16 +12,14 @@ public:
         int currentCookie = 0;
 
         //While there are still either children or cookies to look at:
+        //(This also handles edge cases with no child or no cookie).
         while(currentChild < g.size() && currentCookie < s.size()) {
             //If a cookie can be assigned.
             if (g[currentChild] <= s[currentCookie]) {
                 currentChild ++;
-                currentCookie ++;
             }
-            //Otherwise consider the next cookie.
-            else {
-                currentCookie ++;
-            }
+            //Check the next cookie
+            currentCookie ++;
         }
         //Return the solution.
         return currentChild;
